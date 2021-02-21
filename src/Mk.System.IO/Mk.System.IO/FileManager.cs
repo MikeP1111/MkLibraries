@@ -6,7 +6,10 @@ namespace Mk.System.IO
     {
         public static void SaveFile(string content, string path, string fileName)
         {
-            File.WriteAllText(path + fileName, content);
+            if (!path.EndsWith("\\") && !fileName.StartsWith("\\"))
+                File.WriteAllText(path + "\\" + fileName, content);
+            else
+                File.WriteAllText(path + fileName, content);
         }
 
         public static string ReadFile(string filePath)
